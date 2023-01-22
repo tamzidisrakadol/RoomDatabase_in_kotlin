@@ -11,5 +11,9 @@ data class Contact(
     var id:Int,
     var name:String,
     var phone:String,
-    val createDate: Date
+    val createDate: Date,
+
+    // migrating
+    val isActive:Boolean
+
 )

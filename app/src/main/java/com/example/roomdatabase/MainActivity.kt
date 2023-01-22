@@ -29,7 +29,10 @@ class MainActivity : AppCompatActivity() {
         //running the insert fun of database in coroutine for suspending function
         CoroutineScope(Dispatchers.Main).launch {
             database.contactDao().insertContact(Contact(0,"Tamzid Israk Adol","+019568210421",
-                Date()
+                Date(),false
+            ))
+            database.contactDao().insertContact(Contact(0,"Tamzid  Adol","+068210421",
+                Date(),true
             ))
         }
 
