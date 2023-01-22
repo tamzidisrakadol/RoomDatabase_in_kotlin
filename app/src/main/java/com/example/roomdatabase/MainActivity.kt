@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.room.Room
 import kotlinx.coroutines.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,11 +17,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        database = Room.databaseBuilder(applicationContext,ContactDatabase::class.java,"CONTACTDB").build()
+        //init the database
+        database = ContactDatabase.getDatabase(this)
+
+      /*  //checking if there is same instance
+        val database2 = ContactDatabase.getDatabase(this)*/
+
+
         text = findViewById(R.id.text)
 
+        //running the insert fun of database in coroutine for suspending function
         CoroutineScope(Dispatchers.Main).launch {
-            database.contactDao().insertContact(Contact(0,"Tamzid Israk","+01956821041"))
+            database.contactDao().insertContact(Contact(0,"Tamzid Israk Adol","+019568210421",
+                Date()
+            ))
         }
 
         text.setOnClickListener {
